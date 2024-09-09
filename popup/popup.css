@@ -1,0 +1,40 @@
+/* popup.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #18103e;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 256px; /* 64 * 4 */
+  height: 320px; /* 80 * 4 */
+  padding: 32px; /* 8 * 4 */
+  background-color: #18103e;
+  border-radius: 16px; /* 4 * 4 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+  font-size: 20px; /* 1.25 * 16px */
+  height: 64px; /* 16 * 4 */
+  width: 128px; /* 32 * 4 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px; /* 4 * 4 */
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: none;
+}
