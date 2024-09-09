@@ -128,6 +128,9 @@ const querypage_style = `
   transition: width 0.3s ease-in-out;
   border: 1px solid black;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .side-container.open-side {
   width: 50rem;
@@ -166,6 +169,19 @@ const querypage_style = `
   align-content: center;
   justify-content: center;
   }
+.result-container {
+  width: 75%;
+  white-space: pre;
+  font-family: monospace;
+  border: 1px solid #000000;
+  margin-top: 1rem;
+  height: 100%;
+  overflow-y: auto;
+  margin-bottom: 4rem;
+}
+.search-result {
+  margin-left: 1rem;
+ }
 `;
 
 function prettifyJSON() {
@@ -337,6 +353,9 @@ function json_query() {
         <button class="search-button">Search</button>
    </div>
    </div> 
+   <div class="result-container">
+      <div class="search-result"></div>
+    </div>
   </div>`;
   const styleElement = document.createElement('style');
   styleElement.type = 'text/css';
@@ -346,20 +365,28 @@ function json_query() {
   const querypage = document.createElement('div');
   querypage.innerHTML = navbar;
   document.body.appendChild(querypage);
-
+  document.querySelector('.search-button').addEventListener('click', () => {
+    const preTagss = Array.from(document.getElementsByTagName('pre'));
+    const JSON_data = JSON.parse(preTagss[0].textContent);
+    const search_data = document.querySelector('.search-input').value;
+    try {
+      const result = jmespath.search(JSON_data, search_data);
+      document.querySelector('.search-result').innerHTML = styledHtml(result);
+    } catch (error) {
+      document.querySelector('.search-result').textContent = `Error: Please check your query`;
+    }
+  });
 }
 
 
-function show_json_query(){
+function show_json_query() {
   const sideBox = document.querySelector(".side-container");
   sideBox.classList.add("open-side");
 }
 
-function hide_json_query(){
+function hide_json_query() {
   const sideBox = document.querySelector(".side-container");
   sideBox.classList.remove("open-side");
 
 }
 
-const preTagss = Array.from(document.getElementsByTagName('pre'));
-console.log(jmespath.search(preTagss[0], "response"));
