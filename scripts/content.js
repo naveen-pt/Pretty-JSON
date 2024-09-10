@@ -166,15 +166,29 @@ function json_query() {
   const querypage = document.createElement('div');
   querypage.innerHTML = navbar;
   document.body.appendChild(querypage);
-  document.querySelector('.search-button').addEventListener('click', () => {
+  const searchButton = document.querySelector('.search-button');
+  const searchInput = document.querySelector('.search-input');
+  const performSearch = () => {
     const preTagss = Array.from(document.getElementsByTagName('pre'));
     const JSON_data = JSON.parse(preTagss[0].textContent);
     const search_data = document.querySelector('.search-input').value;
     try {
       const result = jmespath.search(JSON_data, search_data);
       document.querySelector('.search-result').innerHTML = styledHtml(result);
+      document.querySelectorAll('.end_value').forEach(e => {
+        e.parentElement.firstElementChild.classList.remove('expanded')
+      });
+      expandcollapse();
     } catch (error) {
       document.querySelector('.search-result').textContent = `Error: Please check your query`;
+    }
+  };
+  searchButton.addEventListener('click', () => {
+    performSearch();
+  });
+  searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      performSearch();
     }
   });
 }
