@@ -1,7 +1,9 @@
 .json_block {
   padding-left: 20px; 
   border-left-width: thin; 
-  border-left-style: solid; 
+  border-left-style: solid;
+  border-left-style: dashed; 
+  border-left-color: rgba(0, 0, 0, 0.349); 
   border-color: 'black';
   margin-left: 0.25rem;
   margin-top: 3px;
