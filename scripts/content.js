@@ -13,10 +13,10 @@ function prettifyJSON() {
       document.querySelectorAll('.end_value').forEach(e => {
         e.parentElement.firstElementChild.classList.remove('expanded')
       });
-      expandcollapse();
+      expandcollapse(document.body);
     } catch (e) {
       preTag.classList.add('not-formatted');
-      // console.warn('Content is not valid JSON');
+      console.log(e);
     }
   }
 }
@@ -28,8 +28,8 @@ if (preTags.length === 1) {
   json_query();
 }
 
-function expandcollapse() {
-  const array = document.querySelectorAll('.collapser');
+function expandcollapse(context) {
+  const array = context.querySelectorAll('.collapser');
   array.forEach(element => {
     element.addEventListener('click', (e) => {
       const target = e.currentTarget;
@@ -178,11 +178,12 @@ function json_query() {
     const search_data = document.querySelector('.search-input').value;
     try {
       const result = jmespath.search(JSON_data, search_data);
-      document.querySelector('.search-result').innerHTML = styledHtml(result);
+      const resultContainer = document.querySelector('.search-result');
+      resultContainer.innerHTML = styledHtml(result);
       document.querySelectorAll('.end_value').forEach(e => {
         e.parentElement.firstElementChild.classList.remove('expanded')
       });
-      expandcollapse();
+      expandcollapse(resultContainer);
     } catch (error) {
       document.querySelector('.search-result').textContent = `Error: Please check your query`;
     }
@@ -209,3 +210,11 @@ function hide_json_query() {
 
 }
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'enable') {
+    document.querySelector('.multi-button').style.display = '';
+  } else if (request.action === 'disable') {
+    document.querySelector('.multi-button').style.display = 'none';
+
+  }
+});
