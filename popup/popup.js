@@ -10,9 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle.addEventListener('change', () => {
     const enabled = toggle.checked;
     chrome.storage.sync.set({ extensionEnabled: enabled });
-    // Send a message to content.js to enable/disable the extension functionality
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { action: enabled ? 'enable' : 'disable' });
-    });
+
   });
 });

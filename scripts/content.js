@@ -1,6 +1,6 @@
+let jsonparsed = true;
 function prettifyJSON() {
   const preTags = Array.from(document.getElementsByTagName('pre'));
-  displayToggleButton();
   for (let preTag of preTags) {
     try {
       const json = JSON.parse(preTag.textContent);
@@ -16,16 +16,10 @@ function prettifyJSON() {
       expandcollapse(document.body);
     } catch (e) {
       preTag.classList.add('not-formatted');
+      jsonparsed = false;
       console.log(e);
     }
   }
-}
-
-const preTags = document.getElementsByTagName('pre');
-console.log("Pre tags: ", preTags.length);
-if (preTags.length === 1) {
-  prettifyJSON();
-  json_query();
 }
 
 function expandcollapse(context) {
@@ -210,11 +204,20 @@ function hide_json_query() {
 
 }
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === 'enable') {
-    document.querySelector('.multi-button').style.display = '';
-  } else if (request.action === 'disable') {
-    document.querySelector('.multi-button').style.display = 'none';
 
+function runExtensionFeatures() {
+  const preTags = document.getElementsByTagName('pre');
+  if (preTags.length === 1) {
+    prettifyJSON();
+    if (jsonparsed) {
+      displayToggleButton();
+      json_query();
+    }
   }
-});
+}
+
+chrome.storage.sync.get('extensionEnabled', (data) => {
+  const isEnabled = data.extensionEnabled !== false; // Default is true
+  if (isEnabled) {
+    runExtensionFeatures();
+  }});
