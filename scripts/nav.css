@@ -1,4 +1,4 @@
-:root {
+.multi-button {
   --border-size: 0.125rem;
   --duration: 250ms;
   --ease: cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -8,8 +8,6 @@
   --color-tertiary: dodgerblue;
   --shadow: rgba(0, 0, 0, 0.1);
   --space: 1rem;
-}
-.multi-button {
   position: fixed;
   top: 5px;
   right: 0;
@@ -17,6 +15,7 @@
   width: 17rem;
   display: flex;
 }
+
 .multi-button button.selected {
   color: white;
   background-color: var(--color-secondary);
