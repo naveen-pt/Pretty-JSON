@@ -9,12 +9,13 @@
   margin-top: 3px;
   margin-bottom: 3px;
 }
-li {
+.json_block li {
   list-style-type: none; 
   padding: 0; 
   margin: 0;
 }
-ul {
+
+.json_block ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
