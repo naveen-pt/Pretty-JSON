@@ -21,7 +21,6 @@
       "css": ["scripts/main.css","scripts/nav.css","scripts/querypage.css"]
     }
   ],
-  "options_page": "options/options.html",
   "permissions": [
     "storage",
     "activeTab",
