@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "My Extension",
-  "version": "1.0",
+  "name": "Pretty-JSON",
+  "version": "1.1",
   "description": "A Chrome extension for prettifying JSON.",
   "action": {
     "default_popup": "popup/popup.html"
