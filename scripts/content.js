@@ -26,6 +26,15 @@ function expandcollapse(context) {
   const array = context.querySelectorAll('.collapser');
   array.forEach(element => {
     element.addEventListener('click', (e) => {
+      // Only proceed if click is on the element itself or its ::before pseudo-element
+      const rect = element.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      
+      // Check if click is within the pseudo-element area (first 15px)
+      if (clickX > 15) {
+        return;
+      }
+
       const target = e.currentTarget;
       var sibling = target.nextSibling;
       while (sibling) {
