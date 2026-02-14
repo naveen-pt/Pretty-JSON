@@ -1,4 +1,4 @@
-.formatted-json .json_block, .result-container .json_block {
+.json_block {
   padding-left: 20px; 
   border-left-width: thin; 
   border-left-style: solid;
@@ -9,41 +9,30 @@
   margin-top: 3px;
   margin-bottom: 3px;
 }
-.formatted-json li, .result-container li {
+.json_block li {
   list-style-type: none; 
   padding: 0; 
   margin: 0;
 }
-.formatted-json ul, .result-container ul {
+
+.json_block ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-.expanded, .collapsed {
-  cursor: pointer;
-}
-
-.expanded::before,
-.collapsed::before {
+.expanded::before {
+  content: "-";
   cursor: pointer;
   margin-right: 5px;
   opacity: 54%;
-  position: absolute;
-  left: -15px;
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  text-align: center;
 }
-
-.expanded::before {
-  content: "-";
-}
-
 .collapsed::before {
   content: "+";
-}
+  cursor: pointer;
+  margin-right: 5px;
+  opacity: 54%;
 
+}
 .json_value {
   margin-left: 15px;
 }

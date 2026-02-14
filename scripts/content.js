@@ -26,15 +26,6 @@ function expandcollapse(context) {
   const array = context.querySelectorAll('.collapser');
   array.forEach(element => {
     element.addEventListener('click', (e) => {
-      // Only proceed if click is on the element itself or its ::before pseudo-element
-      const rect = element.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      
-      // Check if click is within the pseudo-element area (first 15px)
-      if (clickX > 15) {
-        return;
-      }
-
       const target = e.currentTarget;
       var sibling = target.nextSibling;
       while (sibling) {
@@ -95,7 +86,6 @@ function styledHtml(value, t = 0) {
 
 function displayToggleButton() {
   const navbar = `
-  <div class="nav-toggle">▶</div>
   <div class="multi-button">
     <button id="prettify-btn">Prettify</button>
     <button id="jsonquery-btn">Query</button>
@@ -105,15 +95,6 @@ function displayToggleButton() {
   const navbarContainer = document.createElement('div');
   navbarContainer.innerHTML = navbar;
   document.body.appendChild(navbarContainer);
-
-  const navToggle = document.querySelector('.nav-toggle');
-  const multiButton = document.querySelector('.multi-button');
-  
-  navToggle.addEventListener('click', function() {
-    multiButton.classList.toggle('nav-hidden');
-    navToggle.classList.toggle('nav-toggle-hidden');
-    navToggle.textContent = navToggle.classList.contains('nav-toggle-hidden') ? '◀' : '▶';
-  });
 
   const rawButton = document.getElementById('raw-btn');
   const prettify_btn = document.getElementById('prettify-btn');
