@@ -3,8 +3,7 @@
   border-left-width: thin; 
   border-left-style: solid;
   border-left-style: dashed; 
-  border-left-color: rgba(0, 0, 0, 0.349); 
-  border-color: 'black';
+  border-left-color: rgba(0, 0, 0, 0.349);
   margin-left: 0.25rem;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -43,4 +42,16 @@
   position: relative;
   left: -0.6rem;
   top: 0.95rem;
+  pointer-events: none;
+}
+.collapser::before {
+  pointer-events: all;
+}
+.json-formatter-container {
+  display: none !important;
+}
+@media (prefers-color-scheme: dark) {
+  .json_block {
+    border-left-color: rgba(255, 255, 255, 0.35);
+  }
 }
